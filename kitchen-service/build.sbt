@@ -1,22 +1,19 @@
-lazy val akkaHttpVersion = "10.2.6"
-lazy val akkaVersion    = "2.6.16"
+val finchVersion = "0.32.1"
+val circeVersion = "0.14.1"
+val scalatestVersion = "3.2.9"
 
-lazy val root = (project in file(".")).
-  settings(
-    inThisBuild(List(
-      organization    := "br.usp",
-      scalaVersion    := "2.13.4"
-    )),
+lazy val root = (project in file("."))
+  .settings(
+    organization := "br.usp",
     name := "kitchen-service",
+    version := "0.0.1-SNAPSHOT",
+    scalaVersion := "2.12.7",
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-http"                % akkaHttpVersion,
-      "com.typesafe.akka" %% "akka-http-spray-json"     % akkaHttpVersion,
-      "com.typesafe.akka" %% "akka-actor-typed"         % akkaVersion,
-      "com.typesafe.akka" %% "akka-stream"              % akkaVersion,
-      "ch.qos.logback"    % "logback-classic"           % "1.2.3",
-
-      "com.typesafe.akka" %% "akka-http-testkit"        % akkaHttpVersion % Test,
-      "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion     % Test,
-      "org.scalatest"     %% "scalatest"                % "3.1.4"         % Test
+      "com.github.finagle" %% "finchx-core"  % finchVersion,
+      "com.github.finagle" %% "finchx-circe"  % finchVersion,
+      "io.circe" %% "circe-generic" % circeVersion,
+      "org.scalatest"      %% "scalatest"    % scalatestVersion % "test",
+      "org.mongodb.scala" %% "mongo-scala-driver" % "2.9.0",
+      "org.apache.kafka" %% "kafka" % "2.8.0"
     )
   )
